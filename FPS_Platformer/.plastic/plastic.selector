@@ -1,4 +1,0 @@
-repository "FPS_Platformer@CSUSB@cloud"
-  path "/"
-    br "/main"
-    co "/main"
