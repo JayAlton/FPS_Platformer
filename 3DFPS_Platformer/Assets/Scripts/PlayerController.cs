@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     
         //move the character 
         velocity = new Vector3(deltaX, deltaY, deltaZ);
+        if(Input.GetKey(KeyCode.LeftShift)) {
+            velocity.z = deltaZ * 2;
+        }
         velocity = rotation * velocity;
         //velocity = Vector3.ClampMagnitude(velocity, speed);
         velocity.y += gravity;
