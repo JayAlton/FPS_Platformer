@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     private bool isGrounded;
     private Vector3 velocity;
+    private Vector3 lastPlatformPosition;
     private CharacterController charController;
     [SerializeField] private Transform cameraTransform;
 
@@ -44,6 +45,28 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity;
         velocity = transform.TransformDirection(velocity);
         charController.Move(velocity * Time.deltaTime);
-    }
 
+        if (transform.parent != null)
+        {
+            Vector3 platformDeltaPosition = transform.parent.position - lastPlatformPosition;
+            transform.position += platformDeltaPosition;
+            lastPlatformPosition = transform.parent.position;
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            // Attach the player to the platform
+            transform.parent = collision.transform;
+        }
+    }
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            // Detach the player from the platform
+            transform.parent = null;
+        }
+    }
 }
