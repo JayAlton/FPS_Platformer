@@ -25,6 +25,9 @@ public class NewBehaviourScript : MonoBehaviour
         if (body != null) {
             body.freezeRotation = true;
         }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame

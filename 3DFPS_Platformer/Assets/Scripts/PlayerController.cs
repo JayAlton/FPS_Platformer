@@ -40,6 +40,13 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift)) {
             velocity.z = deltaZ * 2;
         }
+
+        //weighdown
+        if(Input.GetKeyDown(KeyCode.C) && isGrounded == false)
+        {
+            velocity.y += gravity * 500;
+        }
+
         velocity = rotation * velocity;
         //velocity = Vector3.ClampMagnitude(velocity, speed);
         velocity.y += gravity;
@@ -68,5 +75,10 @@ public class PlayerController : MonoBehaviour
             // Detach the player from the platform
             transform.parent = null;
         }
+    }
+
+    public void Bounce(float bounceForce)
+    {
+        velocity.y = bounceForce;
     }
 }
