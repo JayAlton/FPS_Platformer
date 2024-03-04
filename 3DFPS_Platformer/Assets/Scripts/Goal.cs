@@ -23,10 +23,15 @@ public class Goal : MonoBehaviour
             levelTime += Time.deltaTime;
         }
     }
+    public void SetLevelFinish() {
+        levelFinished = true;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        levelFinished = true;
+        if(!levelFinished) {
+            Debug.Log("Level Not Finished!");
+        }
         Debug.Log("Completed in: " + levelTime + " seconds.");
         StartCoroutine(DelayedRestart());
        
