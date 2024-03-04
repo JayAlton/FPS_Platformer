@@ -26,7 +26,7 @@ public class SceneController : MonoBehaviour
             Debug.Log("Amount of Enemies to spawn: " + totalEnemies);
             for(int i = 0; i < totalEnemies; i++) {
                 enemyArray[i] = Instantiate(enemyPrefab);
-                enemyArray[i].transform.position = largePlatformArray[i].transform.position;
+                enemyArray[i].transform.position = new Vector3( largePlatformArray[i].transform.position.x, largePlatformArray[i].transform.position.y + 0.5f, largePlatformArray[i].transform.position.z);
                 enemyArray[i].transform.rotation = largePlatformArray[i].transform.rotation;
             }
         }
@@ -38,7 +38,9 @@ public class SceneController : MonoBehaviour
             }
         }
         kills++;
+        Debug.Log("Kills: " + kills);
         totalEnemies--;
+        Debug.Log("Remaining Enemies: " + totalEnemies);
         if(totalEnemies == 0) {
             GetComponent<Goal>().SetLevelFinish();
         } 

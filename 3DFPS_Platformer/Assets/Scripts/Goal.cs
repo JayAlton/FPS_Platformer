@@ -29,11 +29,15 @@ public class Goal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!levelFinished) {
+        if(levelFinished == false) {
             Debug.Log("Level Not Finished!");
         }
-        Debug.Log("Completed in: " + levelTime + " seconds.");
-        StartCoroutine(DelayedRestart());
+        else if(levelFinished == true)
+        {
+            Debug.Log("Completed in: " + levelTime + " seconds.");
+            StartCoroutine(DelayedRestart());
+        }
+        
        
     }
 
