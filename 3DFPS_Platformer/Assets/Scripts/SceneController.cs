@@ -39,7 +39,7 @@ public class SceneController : MonoBehaviour
         }
         kills++;
         totalEnemies--;
-        if(kills > 5) {
+        if(totalEnemies == 0) {
             GetComponent<Goal>().SetLevelFinish();
         } 
     }
