@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -41,13 +42,9 @@ public class EnemyAI : MonoBehaviour
         }
         transform.position = newPos;
     }
-    public void ReactToHit() {
-        StartCoroutine(Die());
-    }
-    public IEnumerator Die() {
-        this.transform.Rotate( -75, 0, 0);
-        yield return new WaitForSeconds(1.5f);
-        GetComponent<SceneController>().RegisterKill(this.gameObject);
-        Destroy(this.gameObject);
+
+
+    public void currentPopulation() {
+        
     }
 }
