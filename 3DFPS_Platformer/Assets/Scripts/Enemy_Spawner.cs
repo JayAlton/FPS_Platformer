@@ -22,6 +22,7 @@ public class Enemy_Spawner : MonoBehaviour
     void Start() {
         for(int current = 0; current < population; current++) {
             enemies.Add(Instantiate(PreFab)); // make enemies
+            enemies[current].SetActive(true);
 
             float X_axis = Spawn_location[current].transform.position.x;
             float Y_axis = Spawn_location[current].transform.position.y + 0.5f; // offset

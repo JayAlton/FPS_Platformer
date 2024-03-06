@@ -20,6 +20,7 @@ public class RayCasting : MonoBehaviour
 
     void Update() {
         if (Input.GetMouseButtonDown(MouseClick)) {
+            Debug.Log("Mouse Click");
           
             Vector3 Screen_midpoint = new(camera.pixelWidth/2, camera.pixelHeight/2, 0);
 
@@ -27,8 +28,10 @@ public class RayCasting : MonoBehaviour
 
             if(Physics.Raycast(ray, out RaycastHit hit)) {
                 GameObject hit_Object = hit.transform.gameObject;
+                Debug.Log("Hit Something");
                 if (hit_Object.TryGetComponent<Enemy_HitReaction>(out var target)) {
                     target.ReactToHit();
+                    Debug.Log("Hit target");
                 }
             }
         }
