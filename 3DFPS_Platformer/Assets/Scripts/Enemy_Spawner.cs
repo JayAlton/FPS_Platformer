@@ -9,6 +9,7 @@ public class Enemy_Spawner : MonoBehaviour
     private int population;
     private int killed;
     private List<GameObject> enemies;
+    [SerializeField] private GameObject Goal;
 
 
     public GameObject[] Spawn_location;
@@ -33,10 +34,19 @@ public class Enemy_Spawner : MonoBehaviour
         }
     }
 
-    public void RegisterKill(GameObject enemy) {
-        if(enemies.Contains(enemy)) {
+    public void RegisterKill(GameObject enemy)
+    {
+        if (enemies.Contains(enemy))
+        {
             enemies.Remove(enemy);
+            Debug.Log("Enemies left: " + enemies.Count);
             killed += 1;
+        }
+
+        if (enemies.Count == 0)
+        {
+            Debug.Log("All enemies killed! Proceed to goal to finish the level.");
+            Goal.GetComponent<Goal>().SetLevelFinish();
         }
     }
 

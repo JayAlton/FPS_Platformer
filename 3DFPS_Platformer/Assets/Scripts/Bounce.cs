@@ -4,19 +4,7 @@ using UnityEngine;
 
 public class Bounce : MonoBehaviour
 {
-    public float bounceForce = 10.0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float bounceForce = 15.0f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +14,7 @@ public class Bounce : MonoBehaviour
         {
             Debug.Log("Bounce!");
             player.Bounce(bounceForce);
+            Destroy(this.gameObject);
         }
     }
 }

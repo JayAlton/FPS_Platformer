@@ -33,6 +33,11 @@ public class RayCasting : MonoBehaviour
                     target.ReactToHit();
                     Debug.Log("Hit target");
                 }
+                if (hit_Object.TryGetComponent<Object_HitReaction>(out var obj))
+                {
+                    obj.ReactToHit();
+                    Debug.Log("Hit breakable object");
+                }
             }
         }
     }
