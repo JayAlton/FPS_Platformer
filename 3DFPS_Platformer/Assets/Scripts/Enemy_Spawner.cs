@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Enemy_Spawner : MonoBehaviour
@@ -10,6 +11,7 @@ public class Enemy_Spawner : MonoBehaviour
     private int killed;
     private List<GameObject> enemies;
     [SerializeField] private GameObject Goal;
+    [SerializeField] TMP_Text enemiesLeft;
 
 
     public GameObject[] Spawn_location;
@@ -40,6 +42,7 @@ public class Enemy_Spawner : MonoBehaviour
         {
             enemies.Remove(enemy);
             Debug.Log("Enemies left: " + enemies.Count);
+            enemiesLeft.text = "Enemies left: " + enemies.Count;
             killed += 1;
         }
 

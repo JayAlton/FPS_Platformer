@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float gravity;
     public float jumpForce;
     private bool isGrounded;
+    private bool playerAlive;
     private Vector3 velocity;
     private Vector3 lastPlatformPosition;
     private CharacterController charController;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAlive = true;
         charController = GetComponent<CharacterController>();
     }
 
@@ -51,7 +53,11 @@ public class PlayerController : MonoBehaviour
         //velocity = Vector3.ClampMagnitude(velocity, speed);
         velocity.y += gravity;
         velocity = transform.TransformDirection(velocity);
-        charController.Move(velocity * Time.deltaTime);
+        if (playerAlive == true)
+        {
+            charController.Move(velocity * Time.deltaTime);
+        }
+        
 
         if (transform.parent != null)
         {
@@ -81,4 +87,11 @@ public class PlayerController : MonoBehaviour
     {
         velocity.y = bounceForce;
     }
+
+    public void SetAlive(bool alive)
+    {
+        //function to change playerAlive bool that any other script can call
+        playerAlive = alive;
+    }
+
 }

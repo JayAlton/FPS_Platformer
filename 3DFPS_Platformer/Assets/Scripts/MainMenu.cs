@@ -9,8 +9,8 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadSceneAsync(1);
     }
 
-    void start () {
+    void Start () {
     Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        }
+    Cursor.visible = true;
+    }
 }
