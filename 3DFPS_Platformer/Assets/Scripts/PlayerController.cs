@@ -27,11 +27,11 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = charController.isGrounded;
 
-        float deltaX = Input.GetAxis("Horizontal") * speed;
-        float deltaZ = Input.GetAxis("Vertical") * speed;
+        float deltaX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        float deltaZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         float deltaY = velocity.y;
         if(isGrounded && Input.GetButtonDown("Jump")) {
-            deltaY = jumpForce;
+            deltaY = jumpForce * Time.deltaTime;
         }
 
         float rotationAngle = cameraTransform.eulerAngles.y;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         velocity = transform.TransformDirection(velocity);
         if (playerAlive == true)
         {
-            charController.Move(velocity * Time.deltaTime);
+            charController.Move(velocity);
         }
         
 
