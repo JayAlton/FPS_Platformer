@@ -30,7 +30,7 @@ public class RayCasting : MonoBehaviour
                 GameObject hit_Object = hit.transform.gameObject;
                 Debug.Log("Hit Something");
                 if (hit_Object.TryGetComponent<Enemy_HitReaction>(out var target)) {
-                    target.ReactToHit();
+                    target.ReactToHit(hit_Object.GetComponent<EnemyAI>());
                     Debug.Log("Hit target");
                 }
                 if (hit_Object.TryGetComponent<Object_HitReaction>(out var obj))

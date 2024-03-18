@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed;
     public float fireRate;
     public float shotDamage;
+    public int hp;
     // Start is called before the first frame update
     void Start()
     {
