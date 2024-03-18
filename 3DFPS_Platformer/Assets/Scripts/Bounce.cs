@@ -13,7 +13,7 @@ public class Bounce : MonoBehaviour
         if (player != null )
         {
             Debug.Log("Bounce!");
-            player.Bounce(bounceForce);
+           // player.Bounce(bounceForce);
             Destroy(this.gameObject);
         }
     }

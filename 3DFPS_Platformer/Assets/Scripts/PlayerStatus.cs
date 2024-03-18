@@ -43,7 +43,7 @@ public class PlayerStatus : MonoBehaviour
 
     private IEnumerator PlayerDeath()
     {
-        playerController.SetAlive(false);
+       // playerController.SetAlive(false);
         //Debug.Log("You are DEAD!");
         deathScreen.SetActive(true);
         HUD.SetActive(false);
