@@ -52,6 +52,11 @@
         "Temp/": true
     },
     "dotnet.defaultSolution": "3DFPS_Platformer.sln",
+<<<<<<< Updated upstream
     "editor.suggest.showReferences": false,
+=======
+    "editor.suggest.showReferences": true,
+    "dotnet.codeLens.enableReferencesCodeLens": false,
+>>>>>>> Stashed changes
     "editor.codeLens": false
 }
