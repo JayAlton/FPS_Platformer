@@ -51,5 +51,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "3DFPS_Platformer.sln"
+    "dotnet.defaultSolution": "3DFPS_Platformer.sln",
+    "editor.suggest.showReferences": false,
+    "editor.codeLens": false
 }

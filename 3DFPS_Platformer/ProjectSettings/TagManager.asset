@@ -6,7 +6,7 @@ TagManager:
   tags:
   - MovingPlatform
   - Bounce
-  - SceneController
+  - Spawner
   layers:
   - Default
   - TransparentFX

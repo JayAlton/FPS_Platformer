@@ -4,20 +4,16 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Enemy_HitReaction : MonoBehaviour
-{
-    // Start is called before the first frame update
-
-    private GameObject scene_controller;
+public class Enemy_HitReaction : MonoBehaviour {
+    private GameObject Spawner;
 
     void Awake() {
-        scene_controller = GameObject.FindGameObjectWithTag("SceneController");
+        Spawner = GameObject.FindGameObjectWithTag("Spawner");
     }
 
-
     public void ReactToHit() {
-        if(scene_controller.TryGetComponent<Enemy_Spawner>(out var spawner)) {
-            spawner.RegisterKill(this.gameObject);
+        if(Spawner.TryGetComponent<Enemy_Spawner>(out var obj)) {
+            obj.RegisterKill(this.gameObject);
             Destroy(this.gameObject);
         }
     }
