@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+        //if c is pressed apply weighdown
+        if(Input.GetKeyDown(KeyCode.C) && !isGrounded)
+        {
+            Debug.Log("weighdown");
+            velocity.y += -gravity * 250 * Time.fixedDeltaTime;
+        }
     }
 
     void FixedUpdate()
@@ -35,7 +41,6 @@ public class PlayerController : MonoBehaviour
         // Transform input according to camera rotation
         Vector3 moveDirection = cameraTransform.TransformDirection(new Vector3(deltaX, 0f, deltaZ));
 
-        Debug.Log(isGrounded);
         // Apply gravity
         if (!isGrounded)
         {
@@ -43,9 +48,12 @@ public class PlayerController : MonoBehaviour
             velocity.y += -gravity * Time.fixedDeltaTime;
         }
 
+        
+
         // Move the player
         charController.Move(moveDirection + velocity * Time.fixedDeltaTime);
     }
+    
 
     void Jump()
     {
