@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         // Transform input according to camera rotation
         Vector3 moveDirection = cameraTransform.TransformDirection(new Vector3(deltaX, 0f, deltaZ));
 
-
+        Debug.Log(isGrounded);
         // Apply gravity
         if (!isGrounded)
         {
@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
 
     void GroundCheck()
     {
+        isGrounded = false;
         // Perform a Raycast from the player's feet
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.3f))
@@ -64,13 +65,16 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
-                return;
             } else if(hit.collider.CompareTag("MovingPlatform")) {
                 isGrounded = true;
+            }
+        }
+        if(Physics.Raycast(transform.position, Vector3.up, out hit, 1.5f)) {
+            if(hit.collider.CompareTag("Ground") || hit.collider.CompareTag("MovingPlatform")) {
+                isGrounded = false;
+                velocity.y = -gravity * Time.fixedDeltaTime;
                 return;
             }
         }
-
-        isGrounded = false;
     }
 }
