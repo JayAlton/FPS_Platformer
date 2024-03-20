@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+<<<<<<< Updated upstream
 using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour {
@@ -58,4 +59,36 @@ public class PlayerStatus : MonoBehaviour {
     //     yield return new WaitForSeconds(3);
     //     SceneManager.LoadScene(0);
     // }
+=======
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class PlayerStatus : MonoBehaviour {
+
+    public float health;
+    private GameObject deathScreen;
+    private GameObject HUD;
+
+    void Start() {
+ 
+        health = 21;
+        deathScreen = GameObject.Find("Death Screen");
+        deathScreen.SetActive(false);
+        HUD = GameObject.Find("HUD");
+    }
+
+    public void Hurt(int damage){
+        health -= damage;
+        if (health <= 0) {           
+            StartCoroutine(PlayerDeath());
+        }
+    }
+
+    private IEnumerator PlayerDeath() {
+        deathScreen.SetActive(true);
+        HUD.SetActive(false);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(0);
+    }
+>>>>>>> Stashed changes
 }

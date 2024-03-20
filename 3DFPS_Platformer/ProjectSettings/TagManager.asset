@@ -6,7 +6,14 @@ TagManager:
   tags:
   - MovingPlatform
   - Bounce
+<<<<<<< Updated upstream
   - Spawner
+=======
+  - SceneController
+  - Ground
+  - Spawn
+  - Goal
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

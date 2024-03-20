@@ -6,6 +6,7 @@ public class Bounce : MonoBehaviour
 {
     public float bounceForce = 15.0f;
 
+<<<<<<< Updated upstream
     private void OnTriggerEnter(Collider other)
     {
         ///PlayerController player = other.GetComponent<PlayerController>();
@@ -17,4 +18,7 @@ public class Bounce : MonoBehaviour
         //     Destroy(this.gameObject);
         // }
     }
+=======
+
+>>>>>>> Stashed changes
 }

@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 <<<<<<<< Updated upstream:3DFPS_Platformer/Assets/Scripts/UI_Health.cs.meta
 guid: 73fc47ca1904f544d913dc52763929fc
 ========
 guid: 95507cffed3f87d44839dcc2269acbb8
+=======
+<<<<<<<< Updated upstream:3DFPS_Platformer/Assets/Scripts/Player/PlayerStatus.cs.meta
+guid: 874cb822eb5d85048bcf575e64353215
+========
+guid: a13908253f48bfa4080423557ba277eb
+>>>>>>> Stashed changes
 >>>>>>>> Stashed changes:3DFPS_Platformer/Assets/Scripts/Player/Movement.cs.meta
 MonoImporter:
   externalObjects: {}

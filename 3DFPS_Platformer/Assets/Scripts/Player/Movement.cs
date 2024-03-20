@@ -27,13 +27,21 @@ public class Movement : MonoBehaviour {
 
     private float left_right;
     private float forward_backward;
+<<<<<<< Updated upstream
     public float speed;
+=======
+    public float sensitivity;
+>>>>>>> Stashed changes
 
 
     void Awake() {
         character = GetComponent<CharacterController>();
         current_position = transform.position.y;
+<<<<<<< Updated upstream
       
+=======
+        desire_position = 0f;
+>>>>>>> Stashed changes
         previous_position = transform.position.y;
         displacement = 0f;
 
@@ -49,10 +57,14 @@ public class Movement : MonoBehaviour {
         acceleration = 2 * (jump_height - velocity * delta_time) / (delta_time * delta_time);
         left_right = 0f;
         forward_backward = 0f;
+<<<<<<< Updated upstream
         speed = 9.8f;
 
 
         desire_position = current_position + jump_height;
+=======
+        sensitivity = 9.8f;
+>>>>>>> Stashed changes
     }
 
     void Update() {
@@ -62,9 +74,15 @@ public class Movement : MonoBehaviour {
         vertical_motion();
         
           // sprint
+<<<<<<< Updated upstream
         float temp = speed;
         if (Input.GetKey(KeyCode.LeftShift)) {
             temp = speed * 2;
+=======
+        float temp = sensitivity;
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            temp = sensitivity * 2;
+>>>>>>> Stashed changes
         }        
 
         
@@ -94,7 +112,11 @@ public class Movement : MonoBehaviour {
         } 
 
         if (upwards) {
+<<<<<<< Updated upstream
             if (velocity >= 0) {
+=======
+            if (velocity >= 3f) {
+>>>>>>> Stashed changes
                 velocity += acceleration * Time.deltaTime;
             }
             displacement = velocity * Time.deltaTime;
@@ -113,9 +135,15 @@ public class Movement : MonoBehaviour {
         }
     }
 
+<<<<<<< Updated upstream
     private void movement(float temp_speed) {
         left_right = Input.GetAxis("Horizontal") * Time.deltaTime * temp_speed;
         forward_backward = Input.GetAxis("Vertical") * Time.deltaTime * temp_speed;
+=======
+    private void movement(float temp_sensitivity) {
+        left_right = Input.GetAxis("Horizontal") * Time.deltaTime * temp_sensitivity;
+        forward_backward = Input.GetAxis("Vertical") * Time.deltaTime * temp_sensitivity;
+>>>>>>> Stashed changes
 
         Vector3 up_down = transform.up * displacement;
         Vector3 lef_righ = transform.right * left_right;
@@ -131,6 +159,7 @@ public class Movement : MonoBehaviour {
     }
 
 
+<<<<<<< Updated upstream
 }
 
 /// movine
@@ -155,3 +184,6 @@ public class Movement : MonoBehaviour {
 
 //         isGrounded = false;
 //     }
+=======
+}
+>>>>>>> Stashed changes

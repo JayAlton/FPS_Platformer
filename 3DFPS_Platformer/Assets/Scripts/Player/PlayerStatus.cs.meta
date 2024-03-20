@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<<< Updated upstream:3DFPS_Platformer/Assets/Scripts/Player/PlayerStatus.cs.meta
 guid: 874cb822eb5d85048bcf575e64353215
+========
+guid: a13908253f48bfa4080423557ba277eb
+>>>>>>>> Stashed changes:3DFPS_Platformer/Assets/Scripts/Player/Movement.cs.meta
+=======
+guid: 24b7493055f85fe4ab682955dab1ba78
+>>>>>>> Stashed changes
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
