@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public float gravity;
     public float jumpForce;
     private bool isGrounded;
+    private bool justLanded;
     private CharacterController charController;
     [SerializeField] Transform cameraTransform;
     private Vector3 velocity; // Added velocity vector for smoother jumping
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         charController = GetComponent<CharacterController>();
+        justLanded = true;
     }
 
     void Update()
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         GroundCheck();
+       // Debug.Log("Y Velocity: " + velocity.y);
         
         // Movement
         float deltaX = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
@@ -79,9 +82,23 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
+                if (justLanded)
+                {
+                    justLanded = false;
+                    velocity.y = 0;
+                }
             } else if(hit.collider.CompareTag("MovingPlatform")) {
                 isGrounded = true;
+                if(justLanded)
+                {
+                    justLanded = false;
+                    velocity.y = 0;
+                }
             }
+        } else
+        {
+            isGrounded = false;
+            justLanded = true;
         }
         if(Physics.Raycast(transform.position, Vector3.up, out hit, 1.5f)) {
             if(hit.collider.CompareTag("Ground") || hit.collider.CompareTag("MovingPlatform")) {
