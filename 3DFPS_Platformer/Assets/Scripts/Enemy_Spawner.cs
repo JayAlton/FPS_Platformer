@@ -34,6 +34,8 @@ public class Enemy_Spawner : MonoBehaviour
             enemies[current].transform.position = new(X_axis, Y_axis, Z_axis); // in this location
             enemies[current].transform.rotation = Spawn_location[current].transform.rotation;
         }
+
+        enemiesLeft.text = "Enemies left: " + enemies.Count;
     }
 
     public void RegisterKill(GameObject enemy)

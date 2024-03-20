@@ -5,19 +5,9 @@ using UnityEngine;
 public class KillBox : MonoBehaviour
 {
 
-    public int damage = 3;
+    public int damage = 5;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     private void OnTriggerEnter(Collider other)
     {

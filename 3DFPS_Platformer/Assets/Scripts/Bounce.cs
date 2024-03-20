@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bounce : MonoBehaviour
 {
-    public float bounceForce = 15.0f;
+    public float bounceForce = 12.0f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,7 +13,7 @@ public class Bounce : MonoBehaviour
         if (player != null )
         {
             Debug.Log("Bounce!");
-           // player.Bounce(bounceForce);
+            player.Bounce(bounceForce);
             Destroy(this.gameObject);
         }
     }

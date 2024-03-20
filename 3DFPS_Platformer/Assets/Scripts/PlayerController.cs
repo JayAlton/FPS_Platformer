@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.C) && !isGrounded)
         {
             Debug.Log("weighdown");
-            velocity.y += -gravity * 250 * Time.fixedDeltaTime;
+            velocity.y += -gravity * 50 * Time.fixedDeltaTime;
         }
     }
 
@@ -59,6 +59,12 @@ public class PlayerController : MonoBehaviour
     {
         // Set initial jump velocity
         velocity.y = jumpForce;
+        isGrounded = false;
+    }
+
+    public void Bounce(float bounceForce)
+    {
+        velocity.y = bounceForce;
         isGrounded = false;
     }
 
