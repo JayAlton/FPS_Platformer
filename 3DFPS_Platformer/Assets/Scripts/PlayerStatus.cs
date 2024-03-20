@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour
 {
 
-    private int maxHealth = 3;
-    private int currentHealth;
+    public float maxHealth;
+    public float currentHealth;
     private PlayerController playerController;
     private GameObject deathScreen;
     private GameObject HUD;
 
-    [SerializeField] TMP_Text health;
+    [SerializeField] private Image healthBarFill;
 
     // Start is called before the first frame update
     void Start()
@@ -23,22 +24,22 @@ public class PlayerStatus : MonoBehaviour
         deathScreen = GameObject.Find("Death Screen");
         deathScreen.SetActive(false);
         HUD = GameObject.Find("HUD");
-        //HUD already set to flase in Goal script
-    }
-
-    void Update()
-    {
-        if (currentHealth <= 0)
-        {           
-            StartCoroutine(PlayerDeath());
-        }
+        //HUD already set to false in Goal script
     }
 
     public void Hurt(int damage)
     {
         currentHealth -= damage;
-        Debug.Log($"Health: {currentHealth}");
-        health.text = $"HP: {currentHealth}";
+        // Debug.Log($"Health: {currentHealth}");
+        // health.text = $"HP: {currentHealth}";
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+          if (currentHealth <= 0) {           
+            StartCoroutine(PlayerDeath());
+        }
+        UpdateHealthBar();
+    }
+    private void UpdateHealthBar() {
+        healthBarFill.fillAmount = (currentHealth/maxHealth);
     }
 
     private IEnumerator PlayerDeath()
