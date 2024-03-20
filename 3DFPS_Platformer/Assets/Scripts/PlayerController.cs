@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    private float walkSpeed;
+    private float sprintSpeed;
     public float gravity;
     public float jumpForce;
     private bool isGrounded;
@@ -15,6 +17,8 @@ public class PlayerController : MonoBehaviour
     {
         charController = GetComponent<CharacterController>();
         justLanded = true;
+        walkSpeed = speed;
+        sprintSpeed = 1.75f * speed;
     }
 
     void Update()
@@ -29,6 +33,14 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("weighdown");
             velocity.y += -gravity * 50 * Time.fixedDeltaTime;
+        }
+
+        if(Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        {
+            Sprint(true);
+        } else
+        {
+            Sprint(false);
         }
     }
 
@@ -63,6 +75,18 @@ public class PlayerController : MonoBehaviour
         // Set initial jump velocity
         velocity.y = jumpForce;
         isGrounded = false;
+    }
+
+    void Sprint(bool sprint)
+    {
+        if(sprint)
+        {
+            speed = sprintSpeed;
+        }
+        else
+        {
+            speed = walkSpeed;
+        }
     }
 
     public void Bounce(float bounceForce)
