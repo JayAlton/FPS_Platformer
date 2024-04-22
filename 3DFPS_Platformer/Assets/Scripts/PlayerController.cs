@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    private float speedBoost;
+    private float originalSpeed;
     private float walkSpeed;
     private float sprintSpeed;
     public float gravity;
@@ -19,6 +22,8 @@ public class PlayerController : MonoBehaviour
         justLanded = true;
         walkSpeed = speed;
         sprintSpeed = 1.75f * speed;
+        originalSpeed = speed;
+        speedBoost = 0;
     }
 
     void Update()
@@ -47,7 +52,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         GroundCheck();
-       // Debug.Log("Y Velocity: " + velocity.y);
         
         // Movement
         float deltaX = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
@@ -63,12 +67,9 @@ public class PlayerController : MonoBehaviour
             velocity.y += -gravity * Time.fixedDeltaTime;
         }
 
-        
-
         // Move the player
         charController.Move(moveDirection + velocity * Time.fixedDeltaTime);
     }
-    
 
     void Jump()
     {
@@ -81,12 +82,35 @@ public class PlayerController : MonoBehaviour
     {
         if(sprint)
         {
-            speed = sprintSpeed;
+            speed = sprintSpeed + speedBoost;
         }
         else
         {
-            speed = walkSpeed;
+            speed = walkSpeed + speedBoost;
         }
+    }
+
+    public void ApplySpeedBoost(float boostAmount, float duration)
+    {
+        // Increase player speed by the boostAmount
+        speedBoost = boostAmount;
+        Debug.Log("SpeedBoost");
+        StartCoroutine(DeactivateSpeedBoost(this, duration));
+    }
+
+    public void ResetSpeed()
+    {
+        // Reset player speed to the original value
+        speedBoost = 0;
+    }
+    private IEnumerator DeactivateSpeedBoost(PlayerController player, float duration)
+    {
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+
+        // Reset player speed after powerup duration
+        player.ResetSpeed();
+        Debug.Log("Deactivate Speed");
     }
 
     public void Bounce(float bounceForce)
