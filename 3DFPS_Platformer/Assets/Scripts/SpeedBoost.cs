@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Powerup : MonoBehaviour
+public class SpeedBoost : MonoBehaviour
 {
     public float speedBoostAmount = 10f; // Amount of speed boost to apply
     public float powerupDuration = 10f; // Duration of the speed boost

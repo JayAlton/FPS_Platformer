@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private float sprintSpeed;
     public float gravity;
     public float jumpForce;
+    private float jumpBoost;
     private bool isGrounded;
     private bool justLanded;
     private CharacterController charController;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
         sprintSpeed = 1.75f * speed;
         originalSpeed = speed;
         speedBoost = 0;
+        jumpBoost = 0;
     }
 
     void Update()
@@ -74,7 +77,7 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         // Set initial jump velocity
-        velocity.y = jumpForce;
+        velocity.y = jumpForce + jumpBoost;
         isGrounded = false;
     }
 
@@ -111,6 +114,29 @@ public class PlayerController : MonoBehaviour
         // Reset player speed after powerup duration
         player.ResetSpeed();
         Debug.Log("Deactivate Speed");
+    }
+
+    public void ApplyJumpBoost(float boostAmount, float duration)
+    {
+        // Increase player speed by the boostAmount
+        jumpBoost = boostAmount;
+        Debug.Log("Jump Boost active");
+        StartCoroutine(DeactivateJumpBoost(this, duration));
+    }
+
+    public void ResetJump()
+    {
+        // Reset player speed to the original value
+        jumpBoost = 0;
+    }
+    private IEnumerator DeactivateJumpBoost(PlayerController player, float duration)
+    {
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+
+        // Reset player speed after powerup duration
+        player.ResetJump();
+        Debug.Log("Deactivate Jump Boost");
     }
 
     public void Bounce(float bounceForce)
