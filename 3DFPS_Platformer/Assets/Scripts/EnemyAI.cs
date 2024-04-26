@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public GameObject target;
+    public float fireRate;
+    public float targetRange;
+    public int attackDamage;
     public UnityEngine.Vector3 startPos;
     public Animator aiAnimation;
     public bool moving;
     public bool moveZ;
     public float moveRange;
     public float moveSpeed;
-    public float fireRate;
     public float shotDamage;
     public int hp;
     // Start is called before the first frame update
@@ -41,9 +44,19 @@ public class EnemyAI : MonoBehaviour
             }
         }
         transform.position = newPos;
+        RaycastHit hit;
+        if(Physics.SphereCast(transform.position, targetRange, transform.forward, out hit)) {
+            if(hit.collider.CompareTag("Player")) {
+                target = hit.collider.gameObject;
+                AttackPlayer();
+            }
+        }
     }
 
-
+    public void AttackPlayer() {
+        Debug.Log("Attacking Player");
+        target.GetComponent<PlayerStatus>().Hurt(attackDamage);
+    }
     public void currentPopulation() {
         
     }

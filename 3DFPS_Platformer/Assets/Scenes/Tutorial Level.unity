@@ -6226,7 +6226,7 @@ GameObject:
   - component: {fileID: 1652319412}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7279,13 +7279,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bea4e1e52246cc469f9ceb2eac3b52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  fireRate: 0
+  targetRange: 0
+  attackDamage: 0
   startPos: {x: 0, y: 0, z: 0}
   aiAnimation: {fileID: 0}
   moving: 0
   moveZ: 0
   moveRange: 0
   moveSpeed: 0
-  fireRate: 0
   shotDamage: 0
   hp: 0
 --- !u!1001 &1896295272

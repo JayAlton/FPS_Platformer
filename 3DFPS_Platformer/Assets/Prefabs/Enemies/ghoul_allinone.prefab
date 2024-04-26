@@ -1530,13 +1530,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bea4e1e52246cc469f9ceb2eac3b52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  fireRate: 2
+  targetRange: 10
+  attackDamage: 2
   startPos: {x: 0, y: 0, z: 0}
   aiAnimation: {fileID: 95289851272888710}
   moving: 0
   moveZ: 0
   moveRange: 0
   moveSpeed: 0
-  fireRate: 0
   shotDamage: 0
   hp: 4
 --- !u!65 &9058404266342312755
@@ -1572,7 +1575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140a66fc506694240baec9d526eab707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 7706457980250913463}
   renderer: {fileID: 9019354539159824675}
   hpMaterialArr:
   - {fileID: 0}
@@ -1591,13 +1593,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bea4e1e52246cc469f9ceb2eac3b52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  fireRate: 0
+  targetRange: 0
+  attackDamage: 0
   startPos: {x: 0, y: 0, z: 0}
   aiAnimation: {fileID: 95289851272888710}
   moving: 1
   moveZ: 1
   moveRange: 1.5
   moveSpeed: 2
-  fireRate: 0
   shotDamage: 0
   hp: 0
 --- !u!65 &2081742736993869643

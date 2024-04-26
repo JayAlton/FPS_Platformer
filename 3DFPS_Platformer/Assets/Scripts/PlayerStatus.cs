@@ -38,6 +38,11 @@ public class PlayerStatus : MonoBehaviour
         }
         UpdateHealthBar();
     }
+
+    public void AddHeart(float healHP) {
+        currentHealth += healHP;
+        UpdateHealthBar();
+    }
     private void UpdateHealthBar() {
         healthBarFill.fillAmount = (currentHealth/maxHealth);
     }

@@ -11,7 +11,7 @@ public class Heart : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Apply speed boost to the player
-            PlayerController player = other.GetComponent<PlayerController>();
+            PlayerStatus player = other.GetComponent<PlayerStatus>();
             if (player != null)
             {
                 // Apply speed boost immediately
