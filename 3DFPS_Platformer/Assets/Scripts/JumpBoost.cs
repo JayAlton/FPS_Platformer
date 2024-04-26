@@ -22,5 +22,8 @@ public class JumpBoost : MonoBehaviour
         }
     }
 
-    
+    void FixedUpdate()
+    {
+        transform.Rotate(0, 15.0f * Time.fixedDeltaTime, 0);
+    }
 }

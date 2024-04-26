@@ -1,10 +1,10 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class SpeedBoost : MonoBehaviour
+public class Heart : MonoBehaviour
 {
-    public float speedBoostAmount = 10f; // Amount of speed boost to apply
-    public float powerupDuration = 10f; // Duration of the speed boost
+    public float healHP = 10f; // Amount of HP to heal
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +15,7 @@ public class SpeedBoost : MonoBehaviour
             if (player != null)
             {
                 // Apply speed boost immediately
-                player.ApplySpeedBoost(speedBoostAmount, powerupDuration);
+                player.AddHeart(healHP);
                 // Destroy the powerup object
                 Destroy(gameObject);
             }
@@ -24,6 +24,6 @@ public class SpeedBoost : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Rotate(0, 15.0f * Time.fixedDeltaTime, 0);
+        transform.Rotate(0, 5.0f * Time.fixedDeltaTime, 0);
     }
 }

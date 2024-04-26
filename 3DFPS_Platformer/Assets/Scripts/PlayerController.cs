@@ -4,6 +4,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    public int maxHearts;
+    private int currHearts;
     public float speed;
     private float speedBoost;
     private float originalSpeed;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
         originalSpeed = speed;
         speedBoost = 0;
         jumpBoost = 0;
+        currHearts = 0;
     }
 
     void Update()
@@ -137,6 +140,12 @@ public class PlayerController : MonoBehaviour
         // Reset player speed after powerup duration
         player.ResetJump();
         Debug.Log("Deactivate Jump Boost");
+    }
+
+    public void AddHeart(float healHP) {
+        if (currHearts <= maxHearts) {
+            currHearts++;
+        }
     }
 
     public void Bounce(float bounceForce)
