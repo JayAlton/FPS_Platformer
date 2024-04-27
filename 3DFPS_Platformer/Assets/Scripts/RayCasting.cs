@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class RayCasting : MonoBehaviour
 {
+    [SerializeField] AudioSource soundSource;
+    [SerializeField] AudioClip shotSound;
+    [SerializeField] AudioClip hitEnemySound;
     private new Camera camera;
     private int MouseClick;
     private enum typesOf_Clicks {
@@ -28,9 +32,11 @@ public class RayCasting : MonoBehaviour
 
             if(Physics.Raycast(ray, out RaycastHit hit)) {
                 GameObject hit_Object = hit.transform.gameObject;
+                soundSource.PlayOneShot(shotSound);
                 Debug.Log("Hit Something");
                 if (hit_Object.TryGetComponent<Enemy_HitReaction>(out var target)) {
                     target.ReactToHit(hit_Object.GetComponent<EnemyAI>());
+                    soundSource.PlayOneShot(hitEnemySound);
                     Debug.Log("Hit target");
                 }
                 if (hit_Object.TryGetComponent<Object_HitReaction>(out var obj))
