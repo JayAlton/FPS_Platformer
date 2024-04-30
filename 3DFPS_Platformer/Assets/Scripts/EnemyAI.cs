@@ -6,7 +6,8 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public GameObject target;
-    public float fireRate;
+    public float fireRatePerSecond;
+    private float nextFireTime;
     public float targetRange;
     public int attackDamage;
     public UnityEngine.Vector3 startPos;
@@ -17,10 +18,12 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed;
     public float shotDamage;
     public int hp;
+
     // Start is called before the first frame update
     void Start()
     {
         startPos = transform.position;
+        nextFireTime = Time.time + 1 / fireRatePerSecond;
     }
 
     // Update is called once per frame
@@ -45,10 +48,18 @@ public class EnemyAI : MonoBehaviour
         }
         transform.position = newPos;
         RaycastHit hit;
-        if(Physics.SphereCast(transform.position, targetRange, transform.forward, out hit)) {
-            if(hit.collider.CompareTag("Player")) {
+        if (Physics.SphereCast(transform.position, targetRange, transform.forward, out hit))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
                 target = hit.collider.gameObject;
-                AttackPlayer();
+                // Check if enough time has passed since last attack
+                if (Time.time >= nextFireTime)
+                {
+                    AttackPlayer();
+                    // Set next allowed time to attack based on fire rate
+                    nextFireTime = Time.time + 1 / fireRatePerSecond;
+                }
             }
         }
     }

@@ -1531,9 +1531,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  fireRate: 2
+  fireRatePerSecond: 0.5
   targetRange: 10
-  attackDamage: 2
+  attackDamage: 1
   startPos: {x: 0, y: 0, z: 0}
   aiAnimation: {fileID: 95289851272888710}
   moving: 0
@@ -1594,7 +1594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  fireRate: 0
+  fireRatePerSecond: 0
   targetRange: 0
   attackDamage: 0
   startPos: {x: 0, y: 0, z: 0}
