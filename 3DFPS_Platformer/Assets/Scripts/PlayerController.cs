@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
         // Perform a Raycast from the player's feet
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, transform.localScale.y + 0.3f))
         {
             // Check if the Raycast hits an object tagged as "Ground"
             if (hit.collider.CompareTag("Ground"))

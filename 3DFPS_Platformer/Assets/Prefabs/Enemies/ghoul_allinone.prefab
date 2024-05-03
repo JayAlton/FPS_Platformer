@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   fireRatePerSecond: 0.5
-  targetRange: 10
+  targetRange: 7.5
   attackDamage: 1
   startPos: {x: 0, y: 0, z: 0}
   aiAnimation: {fileID: 95289851272888710}
