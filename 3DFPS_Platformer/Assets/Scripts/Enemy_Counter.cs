@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Enemy_Spawner : MonoBehaviour
+public class Enemy_Counter : MonoBehaviour
 {
     [SerializeField]
     private GameObject PreFab;
     private int population;
     private int killed;
-    private List<GameObject> enemies;
+    private List<GameObject> enemyList = new List<GameObject>();
     [SerializeField] private GameObject Goal;
     [SerializeField] TMP_Text enemiesLeft;
 
 
-    public GameObject[] Spawn_location;
+    public GameObject[] enemies;
 
     void Awake() {
-        enemies = new List<GameObject>();
         killed = 0;
-        population = Spawn_location.Length;
+        population = enemies.Length;
         for(int i = 0; i < population; i++) {
-          //  enemies.Add(Spawn_location[i]);
+            enemyList.Add(enemies[i]);
         }
     }
 
     void Start() {
-
+        /*
         for(int current = 0; current < population; current++) {
             enemies.Add(Instantiate(PreFab)); // make enemies
             enemies[current].SetActive(true);
@@ -38,21 +37,21 @@ public class Enemy_Spawner : MonoBehaviour
             enemies[current].transform.position = new(X_axis, Y_axis, Z_axis); // in this location
             enemies[current].transform.rotation = Spawn_location[current].transform.rotation;
         }
-
-        enemiesLeft.text = "Enemies left: " + enemies.Count;
+        */
+        enemiesLeft.text = "Enemies left: " + enemies.Length;
     }
 
     public void RegisterKill(GameObject enemy)
     {
-        if (enemies.Contains(enemy))
+        if (enemyList.Contains(enemy))
         {
-            enemies.Remove(enemy);
-            Debug.Log("Enemies left: " + enemies.Count);
-            enemiesLeft.text = "Enemies left: " + enemies.Count;
+            enemyList.Remove(enemy);
+            Debug.Log("Enemies left: " + enemyList.Count);
+            enemiesLeft.text = "Enemies left: " + enemyList.Count;
             killed += 1;
         }
 
-        if (enemies.Count == 0)
+        if (enemyList.Count == 0)
         {
             Debug.Log("All enemies killed! Proceed to goal to finish the level.");
             Goal.GetComponent<Goal>().SetLevelFinish();
