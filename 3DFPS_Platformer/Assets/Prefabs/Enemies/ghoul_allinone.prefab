@@ -1467,9 +1467,7 @@ GameObject:
   - component: {fileID: 4329093712553798}
   - component: {fileID: 95289851272888710}
   - component: {fileID: 6867322549458965442}
-  - component: {fileID: 9058404266342312755}
   - component: {fileID: -3738770492032505875}
-  - component: {fileID: 7706457980250913463}
   - component: {fileID: 2081742736993869643}
   - component: {fileID: 9019354539159824675}
   m_Layer: 0
@@ -1532,7 +1530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   fireRatePerSecond: 0.5
-  targetRange: 7.5
+  targetRange: 5
   attackDamage: 1
   startPos: {x: 0, y: 0, z: 0}
   aiAnimation: {fileID: 95289851272888710}
@@ -1542,27 +1540,6 @@ MonoBehaviour:
   moveSpeed: 0
   shotDamage: 0
   hp: 4
---- !u!65 &9058404266342312755
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588515496468854}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.5, z: 1}
-  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!114 &-3738770492032505875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1581,30 +1558,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 252e02a62dfefd0498f080a9db860fa8, type: 2}
   - {fileID: 2100000, guid: a9f817e799399354f95083fa94593545, type: 2}
   - {fileID: 2100000, guid: 67fa6b7f80916274987e2c6a159b5fb5, type: 2}
---- !u!114 &7706457980250913463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588515496468854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bea4e1e52246cc469f9ceb2eac3b52a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  fireRatePerSecond: 0
-  targetRange: 0
-  attackDamage: 0
-  startPos: {x: 0, y: 0, z: 0}
-  aiAnimation: {fileID: 95289851272888710}
-  moving: 1
-  moveZ: 1
-  moveRange: 1.5
-  moveSpeed: 2
-  shotDamage: 0
-  hp: 0
 --- !u!65 &2081742736993869643
 BoxCollider:
   m_ObjectHideFlags: 0
