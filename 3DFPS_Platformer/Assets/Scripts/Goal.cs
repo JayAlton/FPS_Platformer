@@ -13,10 +13,12 @@ public class Goal : MonoBehaviour
     private GameObject Scoreboard;
     private GameObject HUD;
     List<float> completionTimes;
+    Scene currentScene;
 
 
     [SerializeField] TMP_Text timeDisplay;
-    
+    [SerializeField] TMP_Text newTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class Goal : MonoBehaviour
         HUD = GameObject.Find("HUD");
         HUD.SetActive(true);
         LoadLeaderboard();
+        currentScene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
@@ -50,7 +53,7 @@ public class Goal : MonoBehaviour
         else if(levelFinished == true && goalEntered == false)
         {
             Debug.Log("Completed in: " + levelTime + " seconds.");
-            //timeDisplay.text = "Completed in: " + levelTime + " seconds.";
+            newTime.text = levelTime + " seconds";
             AddScore();
             goalEntered = true;
             StartCoroutine(DelayedRestart());
@@ -88,8 +91,15 @@ public class Goal : MonoBehaviour
             stats += completionTimes[i].ToString() + ",";
         }
 
-        PlayerPrefs.SetString("Leaderboard", stats);
-
+        if (currentScene.name == "Tutorial Level")
+        {
+            PlayerPrefs.SetString("Tutorial_Leaderboard", stats);
+        }
+        else if (currentScene.name == "Level 1")
+        {
+            PlayerPrefs.SetString("Level_1_Leaderboard", stats);
+        }
+        
         UpdateLeaderboardVisual();
     }
 
@@ -97,16 +107,24 @@ public class Goal : MonoBehaviour
     {
         timeDisplay.text = "";
 
-        // possible error here
-        for (int i = 0;i < completionTimes.Count;i++)
+        for (int i = 0;i < completionTimes.Count && i<5; i++)
         {
-            timeDisplay.text += completionTimes[i] + "\n";
+            timeDisplay.text += (i+1) + "- " + completionTimes[i] + " seconds\n";
         }
     }
 
     void LoadLeaderboard()
     {
-        string stats = PlayerPrefs.GetString("Leaderboard");
+        string stats = "";
+
+        if (currentScene.name == "Tutorial Level")
+        {
+            stats = PlayerPrefs.GetString("Tutorial_Leaderboard");
+        }
+        else if (currentScene.name == "Level 1")
+        {
+            stats = PlayerPrefs.GetString("Level_1_Leaderboard");
+        }
 
         string[] stats2 = stats.Split(',');
 
@@ -124,7 +142,7 @@ public class Goal : MonoBehaviour
     {
         Scoreboard.SetActive(true);
         HUD.SetActive(false);
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         //Debug.Log("Restarting Scene");
         SceneManager.LoadScene(0);
     }

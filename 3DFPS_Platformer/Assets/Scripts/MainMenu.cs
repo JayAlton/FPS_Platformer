@@ -24,5 +24,6 @@ public class MainMenu : MonoBehaviour
     public void ClearPrefs()
     {
         PlayerPrefs.DeleteAll();
+        Debug.Log("Cleared Scores.");
     }
 }
