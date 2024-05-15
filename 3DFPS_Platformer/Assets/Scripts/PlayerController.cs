@@ -5,6 +5,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioSource footstepsSound;
     public float speed;
     private float speedBoost;
     private float originalSpeed;
@@ -13,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float gravity;
     public float jumpForce;
     private float jumpBoost;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool justLanded;
     private CharacterController charController;
     [SerializeField] Transform cameraTransform;
@@ -50,6 +51,12 @@ public class PlayerController : MonoBehaviour
         } else
         {
             Sprint(false);
+        }
+        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && isGrounded){
+            footstepsSound.enabled = true;
+        }
+        else {
+            footstepsSound.enabled = false;
         }
     }
 

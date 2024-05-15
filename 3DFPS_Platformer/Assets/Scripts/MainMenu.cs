@@ -9,10 +9,10 @@ public class MainMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    public void PlayTutorial () {
+    public void PlayLevelOne () {
         SceneManager.LoadSceneAsync(1);
     }
-      public void PlayLevelOne () {
+      public void PlayLevelTwo () {
         SceneManager.LoadSceneAsync(2);
     }
 
