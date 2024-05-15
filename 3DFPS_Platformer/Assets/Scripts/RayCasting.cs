@@ -10,6 +10,8 @@ public class RayCasting : MonoBehaviour
     [SerializeField] AudioClip hitEnemySound;
     private new Camera camera;
     private int MouseClick;
+
+
     private enum typesOf_Clicks {
         Left_Click = 0,
         Right_Click = 1
@@ -24,6 +26,7 @@ public class RayCasting : MonoBehaviour
 
     void Update() {
         if (Input.GetMouseButtonDown(MouseClick)) {
+
             Debug.Log("Mouse Click");
           
             Vector3 Screen_midpoint = new(camera.pixelWidth/2, camera.pixelHeight/2, 0);

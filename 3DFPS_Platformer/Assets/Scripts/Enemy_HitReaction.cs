@@ -11,6 +11,8 @@ public class Enemy_HitReaction : MonoBehaviour
     private GameObject scene_controller;
     [SerializeField] private MeshRenderer renderer;
     [SerializeField] Material[] hpMaterialArr;
+    [SerializeField] AudioSource soundSource;
+    [SerializeField] AudioClip deathsfx;
 
     void Awake() {
         scene_controller = GameObject.FindGameObjectWithTag("SceneController");
@@ -22,7 +24,8 @@ public class Enemy_HitReaction : MonoBehaviour
             if(enemy.hp <= 0)
             {
                 spawner.RegisterKill(this.gameObject);
-                Destroy(this.gameObject);
+                StartCoroutine(Death());
+
             }
             else
             {
@@ -38,5 +41,12 @@ public class Enemy_HitReaction : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator Death()
+    {
+        soundSource.PlayOneShot(deathsfx);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this.gameObject);
     }
 }

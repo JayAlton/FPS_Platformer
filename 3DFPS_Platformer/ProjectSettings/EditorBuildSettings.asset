@@ -15,6 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 1.unity
     guid: 850d40a44f6996c439ec75b27ac1be70
   - enabled: 0
-    path: Assets/Scenes/Demo Scene.unity
+    path: Assets/Scenes/Demo Scene OG.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
