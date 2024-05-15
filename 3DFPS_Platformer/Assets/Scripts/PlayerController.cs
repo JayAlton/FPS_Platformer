@@ -20,6 +20,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform cameraTransform;
     private Vector3 velocity; // Added velocity vector for smoother jumping
 
+    Animator animator;
+    int walking;
+    int Running;
+    int Idle;
+    int Reloading;
+
+
+
+
     void Start()
     {
         charController = GetComponent<CharacterController>();
@@ -29,6 +38,17 @@ public class PlayerController : MonoBehaviour
         originalSpeed = speed;
         speedBoost = 0;
         jumpBoost = 0;
+
+        animator = GetComponentInChildren<Animator>();
+        walking = Animator.StringToHash("Walking");
+        Running = Animator.StringToHash("Running");
+        Idle = Animator.StringToHash("Idle");
+        Reloading = Animator.StringToHash("Reloading");
+
+        animator.SetBool(Running, false);
+        animator.SetBool(walking, false);
+        animator.SetBool(Idle, true);
+
     }
 
     void Update()
@@ -53,28 +73,54 @@ public class PlayerController : MonoBehaviour
             Sprint(false);
         }
 
-        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && isGrounded){
-            if (Input.GetKey(KeyCode.LeftShift)) {
-            sprintSound.enabled = true;
-            footstepsSound.enabled = false;
-        }
-        else {
-            sprintSound.enabled = false;
-            footstepsSound.enabled = true;
-        }
-        }
-        else {
-            sprintSound.enabled = false;
-            footstepsSound.enabled = false;
-        }
+        // if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && isGrounded){
+        //     if (Input.GetKey(KeyCode.LeftShift)) {
+        //     sprintSound.enabled = true;
+        //     footstepsSound.enabled = false;
+        // }
+        // else {
+        //     sprintSound.enabled = false;
+        //     footstepsSound.enabled = true;
+        // }
+        // }
+        // else {
+        //     sprintSound.enabled = false;
+        //     footstepsSound.enabled = false;
+        // }
         
-    }
 
-    void FixedUpdate()
-    {
-        GroundCheck();
-        
-        // Movement
+
+        bool isRunning = animator.GetBool(Running);
+        bool iswalking = animator.GetBool(walking);
+        bool isIdle = animator.GetBool(Idle);
+        bool isReloading = animator.GetBool(Reloading);
+        if (Input.GetAxis("Horizontal") != 0 ||  Input.GetAxis("Vertical") != 0) {
+            if (Input.GetKey(KeyCode.LeftShift)) {
+                animator.SetBool(Running, true);
+                animator.SetBool(walking, false);
+                animator.SetBool(Idle, false);
+            }else {
+                animator.SetBool(Running, false);
+                animator.SetBool(walking, true);
+                animator.SetBool(Idle, false);
+            }
+        } else if (!isReloading){
+            animator.SetBool(Running, false);
+            animator.SetBool(walking, false);
+            animator.SetBool(Idle, true);
+        } 
+
+        if (!isGrounded && !isReloading) {
+                animator.SetBool(Running, false);
+                animator.SetBool(walking, false);
+                animator.SetBool(Idle, true);
+        }
+
+
+
+
+
+
         float deltaX = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
         float deltaZ = Input.GetAxis("Vertical") * speed * Time.fixedDeltaTime;
 
@@ -90,6 +136,14 @@ public class PlayerController : MonoBehaviour
 
         // Move the player
         charController.Move(moveDirection + velocity * Time.fixedDeltaTime);
+    }
+
+    void FixedUpdate()
+    {
+        GroundCheck();
+        
+        // Movement
+       
     }
 
     void Jump()
