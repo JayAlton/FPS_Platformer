@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     int walking;
     int Running;
     int Idle;
+    int Reloading;
 
 
     void Start()
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
         walking = Animator.StringToHash("Walking");
         Running = Animator.StringToHash("Running");
         Idle = Animator.StringToHash("Idle");
+        Reloading = Animator.StringToHash("Reloading");
 
         animator.SetBool(Running, false);
         animator.SetBool(walking, false);
@@ -65,33 +67,41 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
-            animator.SetBool(Running, true);
-            animator.SetBool(walking, false);
-            animator.SetBool(Idle, false);
+        
             Sprint(true);
         } else
         {
             Sprint(false);
-            animator.SetBool(Running, false);
         }
-    }
 
-    void FixedUpdate()
-    {
-        GroundCheck();
 
         bool iswalking = animator.GetBool(walking);
-        bool isRunning = animator.GetBool(Running);
         bool isIdle = animator.GetBool(Idle);
+        bool isReloading = animator.GetBool(Reloading);
 
-        if ((Input.GetAxis("Horizontal") != 0 ||  Input.GetAxis("Vertical") != 0) && !isRunning) {
-            animator.SetBool(walking, true);
-            animator.SetBool(Idle, false);
-            Debug.Log("weighdown");
-        } else {
+        if (Input.GetAxis("Horizontal") != 0 ||  Input.GetAxis("Vertical") != 0) {
+            if (Input.GetKey(KeyCode.LeftShift)) {
+                animator.SetBool(Running, true);
+                animator.SetBool(walking, false);
+                animator.SetBool(Idle, false);
+            }else {
+                animator.SetBool(Running, false);
+                animator.SetBool(walking, true);
+                animator.SetBool(Idle, false);
+            }
+        } else if (!isReloading){
+            animator.SetBool(Running, false);
             animator.SetBool(walking, false);
             animator.SetBool(Idle, true);
         } 
+
+        if (!isGrounded && !isReloading) {
+                animator.SetBool(Running, false);
+                animator.SetBool(walking, false);
+                animator.SetBool(Idle, true);
+        }
+
+
         
         // Movement
         float deltaX = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
@@ -109,6 +119,13 @@ public class PlayerController : MonoBehaviour
 
         // Move the player
         charController.Move(moveDirection + velocity * Time.fixedDeltaTime);
+    }
+
+    void FixedUpdate()
+    {
+        GroundCheck();
+
+
     }
 
     void Jump()

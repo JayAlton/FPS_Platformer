@@ -15,10 +15,25 @@ public class RayCasting : MonoBehaviour
         Right_Click = 1
     }
 
+    Animator animator;
+    int walking;
+    int Running;
+    int Idle;
+    int Reloading;
+
+
+    int gun_cap = 5;
+    int current_ammo_cap = 5;
 
     void Awake() {
         camera = GetComponent<Camera>();
         MouseClick = (int)typesOf_Clicks.Left_Click;
+        animator = GetComponentInChildren<Animator>();
+        walking = Animator.StringToHash("Walking");
+        Running = Animator.StringToHash("Running");
+        Idle = Animator.StringToHash("Idle");
+        Reloading = Animator.StringToHash("Reloading");
+
     }
 
 
@@ -45,6 +60,30 @@ public class RayCasting : MonoBehaviour
                     Debug.Log("Hit breakable object");
                 }
             }
+            current_ammo_cap -= 1;
+            
+            //StartCoroutine(reload_gun(animator.GetCurrentAnimatorStateInfo(Reloading).normalizedTime));
         }
+
+        if (current_ammo_cap <= 0) {
+                animator.SetBool(Running, false);
+                animator.SetBool(walking, false);
+                animator.SetBool(Idle, false);
+                animator.SetBool(Reloading, true);
+                current_ammo_cap = gun_cap;
+        } else {
+            animator.SetBool(Reloading, false);
+            animator.SetBool(Idle, true);
+            }
+    }
+
+
+    private IEnumerator reload_gun(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        animator.SetBool(Running, false);
+        animator.SetBool(walking, false);
+        animator.SetBool(Idle, true);
+        animator.SetBool(Reloading, false);
     }
 }
