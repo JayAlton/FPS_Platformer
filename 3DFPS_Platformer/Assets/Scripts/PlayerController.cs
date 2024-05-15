@@ -125,7 +125,21 @@ public class PlayerController : MonoBehaviour
         float deltaZ = Input.GetAxis("Vertical") * speed * Time.fixedDeltaTime;
 
         // Transform input according to camera rotation
-        Vector3 moveDirection = cameraTransform.TransformDirection(new Vector3(deltaX, 0f, deltaZ));
+        //Vector3 moveDirection = cameraTransform.TransformDirection(new Vector3(deltaX, 0f, deltaZ));
+
+
+
+    //// test
+        Vector3 lef_righ = transform.right * deltaX;
+        Vector3 for_back = transform.forward * deltaZ;
+
+        Vector3 move = lef_righ + for_back;
+
+
+    ///maybe
+
+
+
 
         // Apply gravity
         if (!isGrounded)
@@ -135,7 +149,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Move the player
-        charController.Move(moveDirection + velocity * Time.fixedDeltaTime);
+        charController.Move(move + velocity * Time.fixedDeltaTime);
     }
 
     void FixedUpdate()
