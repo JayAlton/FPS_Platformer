@@ -54,5 +54,11 @@ public class CameraMove : MonoBehaviour
 
             transform.localEulerAngles = new Vector3(verticalRot, horizontalRot, 0);
         }
+        if(Input.GetKey(KeyCode.Escape) && Cursor.lockState == CursorLockMode.Locked){
+        Cursor.lockState = CursorLockMode.None;
+        }
+        // if(Input.GetKey(KeyCode.Escape) && Cursor.lockState == CursorLockMode.None){
+        // Cursor.lockState = CursorLockMode.Locked;
+        // }
     }
 }
