@@ -8,6 +8,7 @@ public class RayCasting : MonoBehaviour
     [SerializeField] AudioSource soundSource;
     [SerializeField] AudioClip shotSound;
     [SerializeField] AudioClip hitEnemySound;
+    [SerializeField] AudioClip destroy;
     private new Camera camera;
     private int MouseClick;
     private enum typesOf_Clicks {
@@ -42,6 +43,7 @@ public class RayCasting : MonoBehaviour
                 if (hit_Object.TryGetComponent<Object_HitReaction>(out var obj))
                 {
                     obj.ReactToHit();
+                    soundSource.PlayOneShot(destroy);
                     Debug.Log("Hit breakable object");
                 }
             }
