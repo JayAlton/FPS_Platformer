@@ -40,6 +40,7 @@ public class RayCasting : MonoBehaviour
     void Update() {
         if (Input.GetMouseButtonDown(MouseClick)) {
             Debug.Log("Mouse Click");
+            Flash();
           
             Vector3 Screen_midpoint = new(camera.pixelWidth/2, camera.pixelHeight/2, 0);
 
@@ -76,6 +77,16 @@ public class RayCasting : MonoBehaviour
         }
     }
 
+    public GameObject[] muzzelFlash;
+	public GameObject muzzelSpawn;
+	private GameObject holdFlash;
+
+	private void Flash(){
+
+		int randomNumberForMuzzelFlash = Random.Range(0,5);
+			holdFlash = Instantiate(muzzelFlash[randomNumberForMuzzelFlash], muzzelSpawn.transform.position /*- muzzelPosition*/, muzzelSpawn.transform.rotation * Quaternion.Euler(0,0,90) ) as GameObject;
+			holdFlash.transform.parent = muzzelSpawn.transform;
+    }
 
     private IEnumerator reload_gun(float duration)
     {
@@ -86,3 +97,4 @@ public class RayCasting : MonoBehaviour
         animator.SetBool(Reloading, false);
     }
 }
+
