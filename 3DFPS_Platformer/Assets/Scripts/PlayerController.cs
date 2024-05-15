@@ -19,6 +19,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform cameraTransform;
     private Vector3 velocity; // Added velocity vector for smoother jumping
 
+
+    Animator animator;
+    int walking;
+    int Running;
+    int Idle;
+
+
     void Start()
     {
         charController = GetComponent<CharacterController>();
@@ -28,10 +35,18 @@ public class PlayerController : MonoBehaviour
         originalSpeed = speed;
         speedBoost = 0;
         jumpBoost = 0;
+        animator = GetComponentInChildren<Animator>();
+        walking = Animator.StringToHash("Walking");
+        Running = Animator.StringToHash("Running");
+        Idle = Animator.StringToHash("Idle");
+
+
     }
 
     void Update()
     {
+        bool isRunning = animator.GetBool(Running);
+
         // Check for jump input
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
@@ -40,22 +55,38 @@ public class PlayerController : MonoBehaviour
         //if c is pressed apply weighdown
         if(Input.GetKeyDown(KeyCode.C) && !isGrounded)
         {
-            Debug.Log("weighdown");
+            
             velocity.y += -gravity * 50 * Time.fixedDeltaTime;
         }
 
         if(Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
+            animator.SetBool(Running, true);
+            animator.SetBool(Idle, false);
             Sprint(true);
         } else
         {
             Sprint(false);
+            animator.SetBool(Running, false);
         }
     }
 
     void FixedUpdate()
     {
         GroundCheck();
+
+        bool iswalking = animator.GetBool(walking);
+        bool isRunning = animator.GetBool(Running);
+        bool isIdle = animator.GetBool(Idle);
+
+        if ((Input.GetAxis("Horizontal") != 0 ||  Input.GetAxis("Vertical") != 0) && !isRunning) {
+            animator.SetBool(walking, true);
+            animator.SetBool(Idle, false);
+            Debug.Log("weighdown");
+        } else {
+            animator.SetBool(walking, false);
+            animator.SetBool(Idle, true);
+        }
         
         // Movement
         float deltaX = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
