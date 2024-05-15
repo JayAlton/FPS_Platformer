@@ -73,8 +73,7 @@ public class RayCasting : MonoBehaviour
                 current_ammo_cap = gun_cap;
         } else {
             animator.SetBool(Reloading, false);
-            animator.SetBool(Idle, true);
-            }
+        }
     }
 
 
