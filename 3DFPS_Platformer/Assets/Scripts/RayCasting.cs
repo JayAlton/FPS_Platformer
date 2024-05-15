@@ -7,7 +7,7 @@ public class RayCasting : MonoBehaviour
 {
     [SerializeField] AudioSource soundSource;
     [SerializeField] AudioClip shotSound;
-    [SerializeField] AudioClip hitEnemySound;
+    [SerializeField] AudioSource hitEnemySound;
     [SerializeField] AudioClip destroy;
     private new Camera camera;
     private int MouseClick;
@@ -21,6 +21,8 @@ public class RayCasting : MonoBehaviour
     int Running;
     int Idle;
     int Reloading;
+
+    bool isRoadling = false;
 
 
     int gun_cap = 5;
@@ -39,7 +41,7 @@ public class RayCasting : MonoBehaviour
 
 
     void Update() {
-        if (Input.GetMouseButtonDown(MouseClick) && !EventSystem.current.IsPointerOverGameObject()) {
+        if (Input.GetMouseButtonDown(MouseClick) && !EventSystem.current.IsPointerOverGameObject() && !isRoadling) {
             Debug.Log("Mouse Click");
             Flash();
           
@@ -53,7 +55,7 @@ public class RayCasting : MonoBehaviour
                 Debug.Log("Hit Something");
                 if (hit_Object.TryGetComponent<Enemy_HitReaction>(out var target)) {
                     target.ReactToHit(hit_Object.GetComponent<EnemyAI>());
-                    soundSource.PlayOneShot(hitEnemySound);
+                    hitEnemySound.Play(0);
                     Debug.Log("Hit target");
                 }
                 if (hit_Object.TryGetComponent<Object_HitReaction>(out var obj))
@@ -64,8 +66,6 @@ public class RayCasting : MonoBehaviour
                 }
             }
             current_ammo_cap -= 1;
-            
-            //StartCoroutine(reload_gun(animator.GetCurrentAnimatorStateInfo(Reloading).normalizedTime));
         }
 
         if (current_ammo_cap <= 0) {
@@ -74,6 +74,8 @@ public class RayCasting : MonoBehaviour
                 animator.SetBool(Idle, false);
                 animator.SetBool(Reloading, true);
                 current_ammo_cap = gun_cap;
+                isRoadling = true;
+                StartCoroutine(reload_gun(2f));
         } else {
             animator.SetBool(Reloading, false);
         }
@@ -92,11 +94,10 @@ public class RayCasting : MonoBehaviour
 
     private IEnumerator reload_gun(float duration)
     {
+        Debug.Log("time: " + duration);
         yield return new WaitForSeconds(duration);
-        animator.SetBool(Running, false);
-        animator.SetBool(walking, false);
-        animator.SetBool(Idle, true);
-        animator.SetBool(Reloading, false);
+        isRoadling = false;
+
     }
 }
 

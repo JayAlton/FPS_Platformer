@@ -73,20 +73,20 @@ public class PlayerController : MonoBehaviour
             Sprint(false);
         }
 
-        // if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && isGrounded){
-        //     if (Input.GetKey(KeyCode.LeftShift)) {
-        //     sprintSound.enabled = true;
-        //     footstepsSound.enabled = false;
-        // }
-        // else {
-        //     sprintSound.enabled = false;
-        //     footstepsSound.enabled = true;
-        // }
-        // }
-        // else {
-        //     sprintSound.enabled = false;
-        //     footstepsSound.enabled = false;
-        // }
+        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && isGrounded){
+            if (Input.GetKey(KeyCode.LeftShift)) {
+            sprintSound.enabled = true;
+            footstepsSound.enabled = false;
+        }
+        else {
+            sprintSound.enabled = false;
+            footstepsSound.enabled = true;
+        }
+        }
+        else {
+            sprintSound.enabled = false;
+            footstepsSound.enabled = false;
+        }
         
 
 
