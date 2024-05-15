@@ -53,6 +53,4 @@ public class MovingPlatform : MonoBehaviour
         }
         transform.position = currPos;
     }
-
-
 }
