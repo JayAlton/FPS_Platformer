@@ -57,8 +57,5 @@ public class CameraMove : MonoBehaviour
         if(Input.GetKey(KeyCode.Escape) && Cursor.lockState == CursorLockMode.Locked){
         Cursor.lockState = CursorLockMode.None;
         }
-        // if(Input.GetKey(KeyCode.Escape) && Cursor.lockState == CursorLockMode.None){
-        // Cursor.lockState = CursorLockMode.Locked;
-        // }
     }
 }

@@ -10,4 +10,11 @@ public void OnSoundToggle() {
 public void OnSoundVolume(float volume) {
     Managers.Audio.soundVolume = volume;
 }
+public void Open() {
+    gameObject.SetActive(true);
+}
+public void Close() {
+    gameObject.SetActive(false);
+    Cursor.lockState = CursorLockMode.Locked;
+}
 }

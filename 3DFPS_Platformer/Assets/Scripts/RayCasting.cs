@@ -23,7 +23,7 @@ public class RayCasting : MonoBehaviour
 
 
     void Update() {
-        if (Input.GetMouseButtonDown(MouseClick)) {
+        if (Input.GetMouseButtonDown(MouseClick) && !EventSystem.current.IsPointerOverGameObject()) {
             Debug.Log("Mouse Click");
           
             Vector3 Screen_midpoint = new(camera.pixelWidth/2, camera.pixelHeight/2, 0);
