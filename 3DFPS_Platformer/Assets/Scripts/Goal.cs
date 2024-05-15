@@ -91,9 +91,9 @@ public class Goal : MonoBehaviour
             stats += completionTimes[i].ToString() + ",";
         }
 
-        if (currentScene.name == "Tutorial Level")
+        if (currentScene.name == "Level 2")
         {
-            PlayerPrefs.SetString("Tutorial_Leaderboard", stats);
+            PlayerPrefs.SetString("Level_2_Leaderboard", stats);
         }
         else if (currentScene.name == "Level 1")
         {

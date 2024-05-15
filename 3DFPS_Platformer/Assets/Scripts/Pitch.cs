@@ -30,7 +30,11 @@ public class Pitch : MonoBehaviour {
 
             transform.localEulerAngles = new(pitch, yaw, 0);
         }
-
+        if (Input.GetKey(KeyCode.Escape) && Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
     
 }
