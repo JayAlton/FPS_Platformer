@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
         Running = Animator.StringToHash("Running");
         Idle = Animator.StringToHash("Idle");
 
+        animator.SetBool(Running, false);
+        animator.SetBool(walking, false);
+        animator.SetBool(Idle, true);
+
 
     }
 
@@ -62,6 +66,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             animator.SetBool(Running, true);
+            animator.SetBool(walking, false);
             animator.SetBool(Idle, false);
             Sprint(true);
         } else
@@ -86,7 +91,7 @@ public class PlayerController : MonoBehaviour
         } else {
             animator.SetBool(walking, false);
             animator.SetBool(Idle, true);
-        }
+        } 
         
         // Movement
         float deltaX = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
