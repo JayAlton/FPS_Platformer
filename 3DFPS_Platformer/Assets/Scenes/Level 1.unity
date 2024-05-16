@@ -23080,6 +23080,14 @@ PrefabInstance:
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1447242802}
+    - target: {fileID: 2465176130333170266, guid: acdcc9d3d3165674298a31da73d579b9, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465176130333170266, guid: acdcc9d3d3165674298a31da73d579b9, type: 3}
+      propertyPath: jumpForce
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5633389527172218518, guid: acdcc9d3d3165674298a31da73d579b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 487.1
